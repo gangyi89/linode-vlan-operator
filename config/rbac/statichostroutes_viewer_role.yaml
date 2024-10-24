@@ -1,0 +1,23 @@
+# permissions for end users to view statichostroutes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: vlan-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: statichostroutes-viewer-role
+rules:
+- apiGroups:
+  - network.operator.linode.io
+  resources:
+  - statichostroutes
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - network.operator.linode.io
+  resources:
+  - statichostroutes/status
+  verbs:
+  - get

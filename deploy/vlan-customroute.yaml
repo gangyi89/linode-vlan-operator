@@ -1,0 +1,35 @@
+apiVersion: network.operator.linode.io/v1alpha1
+kind: Vlan
+metadata:
+  labels:
+    app.kubernetes.io/name: vlan-operator
+  name: vlan-sample
+spec:
+  # TODO(user): Add fields here
+  vlanCidr: <VLAN_CIDR_WITH_STARTING_IP> #ex 172.16.0.5/24
+  vlanLabel: <VLAN NAME> #ex kube-vlan
+  # interval: 10s
+  apiKeySecret:
+    name: linode-api-key
+    key: api-key
+    namespace: default
+---
+apiVersion: network.operator.linode.io/v1alpha1
+kind: StaticHostRoutes
+metadata:
+  labels:
+    app.kubernetes.io/name: vlan-operator
+  name: statichostroutes-sample
+spec:
+  interval: 1m  #optional field. Default to 60s when not specified
+  routes:
+  - cidr: <DESTINATION_CIDR>   #ex 10.100.0.0/24
+    gateway: <NEXT_HOP_GATEWAY> #ex 172.16.0.1
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: linode-api-key
+type: Opaque
+stringData:
+  api-key: "<YOUR API KEY>" #requires READ/WRITE "Linodes" permission

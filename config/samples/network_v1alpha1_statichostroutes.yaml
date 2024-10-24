@@ -1,0 +1,13 @@
+apiVersion: network.operator.linode.io/v1alpha1
+kind: StaticHostRoutes
+metadata:
+  labels:
+    app.kubernetes.io/name: vlan-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: statichostroutes-sample
+spec:
+  # TODO(user): Add fields here
+  interval: 1m
+  routes:
+  - cidr: 10.100.0.0/24
+    gateway: 172.16.0.1
