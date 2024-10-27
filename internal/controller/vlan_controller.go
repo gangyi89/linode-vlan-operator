@@ -57,6 +57,9 @@ type VlanReconciler struct {
 // +kubebuilder:rbac:groups=network.operator.linode.io,resources=vlans/status,verbs=get;update;patch
 // +kubebuilder:rbac:groups=network.operator.linode.io,resources=vlans/finalizers,verbs=update
 // +kubebuilder:rbac:groups=core,resources=events,verbs=create;patch
+// +kubebuilder:rbac:groups="",resources=nodes,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups="",resources=nodes/status,verbs=get
+// +kubebuilder:rbac:groups="",resources=secrets,verbs=get;list;watch
 
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state.
